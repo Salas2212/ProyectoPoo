@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-class pasajero{
+class Pasajero{
 	public:
 		string nacionalidad;
 		int numero_maletas;
@@ -31,7 +31,7 @@ class pasajero{
 };
 
 
-class Tripulacion : public pasajero{
+class Tripulacion : public Pasajero{
 	public:
 		string puesto;
 		int anios_experiencia;

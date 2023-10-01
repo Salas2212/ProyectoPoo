@@ -1,5 +1,4 @@
 #include <bits/stdc++.h>
-//#include "vuelo.h"
 using namespace std;
 
 class Aeronave{
@@ -13,7 +12,7 @@ class Aeronave{
 		pair<double, double>coordenadas;
 		vector<pair<double, double> >coor_aeronaves;
 
-		int id;
+		int id; // guardar identificacion para la torre de control.	
 		
 		//vector<vuelo>vuelos;
 		Aeronave(string registro, int capacidad, int velMax, int aut, int yFabric, string state){
@@ -75,7 +74,13 @@ class JetPrivado : public Aeronave{
 			lista_de_servicios_a_bordo = listaDeServiciosABordo;
 			lista_de_destinos_frecuentes = listaDeDestinosFrecuentes;
 		}
-
 };
+
+
+
+
+
+
+
 
 
