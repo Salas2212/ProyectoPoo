@@ -217,9 +217,13 @@ int SistemaPrincipal::seleccionMenu(){
 	cout << "2. Consultar puertas de embarque.\n";
 	cout << "3. Consultar vuelos.\n";
 	cout << "4. Ver opciones de administrador\n";
+    cout << "0. Salir\n";
 	int ans;
 	cin >> ans;
-	if(ans == 4){
+    if(ans == 0) {
+        return 0;
+    }
+	else if (ans == 4){
 		if(!admin())return -1;
 		cout << "\n\n";
 		cout << "Seleccione la accion que desea realizar: \n";
@@ -231,6 +235,7 @@ int SistemaPrincipal::seleccionMenu(){
 		cout << "10. Consultar tripulaciones\n";
 		cout << "11. Consultar historial de una puerta de embarque\n";
 		cout << "12. Despachar un vuelo\n";
+        cout << "0. Atras\n";
 		cin >> ans;
 		if(ans < 5 or ans > 12)return -1;
 		return ans;
@@ -240,51 +245,52 @@ int SistemaPrincipal::seleccionMenu(){
 }
 
 int SistemaPrincipal::ejecutarMenu(){
-	int respuesta = seleccionMenu();
-	if(respuesta == -1)return -1;
-	switch (respuesta)
-	{
-	case 1: // Comprar un vuelo.
-		comprarUnVuelo();
-		break;
-	case 2: // Consultar puertas de embarque.
-		consultarPuertasDeEmbarque();
-		break;
-	case 3: // ConsultarVuelos.
-		consultarVuelos(true, false);
-		break;
-	case 5: // Agregar una nave.
-		construirAeronave();
-		break;
-	case 6: // Consultar informacion de las naves.
-		consultarInformacionAeronaves();
-		break;
-	case 7: // Editar informacion de una aeronave.
-		editarInformacionAeronave();
-		break;
-	case 8:  // Genera un nuevo vuelo.
-		generarVuelo();
-		break;
-	case 9: // Ingresar tripulacion al sistema:
-		agregarTripulacionAlSistema();
-		break;
-	case 10: // Consultar tripulaciones en el sistema:
-		consultarTripulaciones();
-		break;
-	case 11: // Consultar Historial de alguna puerta de embarque:
-		consultarHistorialPuerta();
-		break;
-	case 12:
-		despacharVuelo();
-		break;
-	default:
-		break;
-	}
-
+    while(true){
+        int respuesta = seleccionMenu();
+        if(respuesta == 0)return 0;
+        switch (respuesta)
+        {
+            case 1: // Comprar un vuelo.
+                comprarUnVuelo();
+                break;
+            case 2: // Consultar puertas de embarque.
+                consultarPuertasDeEmbarque();
+                break;
+            case 3: // ConsultarVuelos.
+                consultarVuelos(true, false);
+                break;
+            case 5: // Agregar una nave.
+                construirAeronave();
+                break;
+            case 6: // Consultar informacion de las naves.
+                consultarInformacionAeronaves();
+                break;
+            case 7: // Editar informacion de una aeronave.
+                editarInformacionAeronave();
+                break;
+            case 8:  // Genera un nuevo vuelo.
+                generarVuelo();
+                break;
+            case 9: // Ingresar tripulacion al sistema:
+                agregarTripulacionAlSistema();
+                break;
+            case 10: // Consultar tripulaciones en el sistema:
+                consultarTripulaciones();
+                break;
+            case 11: // Consultar Historial de alguna puerta de embarque:
+                consultarHistorialPuerta();
+                break;
+            case 12:
+                despacharVuelo();
+                break;
+            default:
+                break;
+        }
+    }
 }
 
 void SistemaPrincipal::consultarPuertasDeEmbarque(){
-	for(int i = 0 ; i < torrePrincipal.puertas_embarques.size() ; i ++){
+	for(int i = 0 ; i < torrePrincipal.puertas_embarques.size() ; i++){
 		torrePrincipal.puertas_embarques[i].imprimirInfo();
 		cout << "\n";
 	}
@@ -650,7 +656,7 @@ void SistemaPrincipal::despacharVuelo(){
 		break;
 	}while(true);
 
-	// Claramente no puedo quitar un vuelo del vector porque la informacion se dana. Entonces simplemente
+	// Claramente no puedo quitar un vuelo del vector porque la informacion se daña. Entonces simplemente
 	// Voy a desocupar la puerta de embarque.
 	// No es lo mas realista pero es una aproximacion.
 	torrePrincipal.puertas_embarques[vuelos[ans]->puerta_embarque].setDisponible(true);

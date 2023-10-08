@@ -89,7 +89,7 @@ int main() {
 	//freopen("input.txt", "r", stdin);
     SistemaPrincipal sys(10);
     /*
-    
+
     generarAeronaveAlAzar(10, sys);
     sys.obtenerInfoAeronave(9);
     sys.editarInformacionAeronave(9);
@@ -97,10 +97,10 @@ int main() {
     */
 
    //Descomentar para no tener que introducir datos.
-   //generarAeronaveAlAzar(10, sys);
-
+   generarAeronaveAlAzar(10, sys);
     while(true){
         int ans = sys.ejecutarMenu();
+        if(ans == 0)break;
     }
     return 0;
 }
